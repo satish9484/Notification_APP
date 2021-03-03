@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.Notification_App.Notification.Constants;
 import com.example.Notification_App.Notification.NonNull;
 import com.example.Notification_App.Notification.Notification;
+import com.example.Notification_App.Notification.SendNotificationToSingleUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -31,8 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    Button Send_Notification;
-    EditText User_Name;
+    private Button Send_Notification;
+    private EditText User_Name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
         Send_Notification = findViewById(R.id.Send_Notification);
         User_Name = findViewById(R.id.User_Name);
-
         Send_Notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String Email = User_Name.getText().toString();
 
-                if (User_Name.getText().toString().isEmpty()) {
+                if (Email.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Enter Email", Toast.LENGTH_LONG).show();
                 } else {
 
+                    Intent intent = new Intent(MainActivity.this, SendNotificationToSingleUser.class);
+                    intent.putExtra(Intent.EXTRA_TEXT,Email );
+
+                   // startActivity(intent);
                     startActivity(new Intent(getApplicationContext(), Notification.class));
                     FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                         @Override

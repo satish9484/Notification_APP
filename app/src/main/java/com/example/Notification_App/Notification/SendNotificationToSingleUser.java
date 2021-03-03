@@ -65,8 +65,6 @@ public class SendNotificationToSingleUser extends AppCompatActivity implements V
         enter_title = findViewById(R.id.editTextTitle);
         enter_message = findViewById(R.id.editTextMessage);
         enter_email = findViewById(R.id.editTextEmail);
-
-        enter_email.setText("satish");
         imageView = findViewById(R.id.Image_ID);
 
         progressDialog = new ProgressDialog(this);
@@ -167,15 +165,27 @@ public class SendNotificationToSingleUser extends AppCompatActivity implements V
 
     private void sendNotification() {
 
-        final String email = enter_email.getText().toString().trim();
+        final String email = enter_email.getText().toString();
         final String title = enter_title.getText().toString().trim();
         final String message = enter_message.getText().toString().trim();
+
+        Intent intent = getIntent();
+        String Email = intent.getStringExtra(Intent.EXTRA_TEXT);
+
 
         progressDialog.setMessage("Sending Notification...");
         progressDialog.show();
 
-
-        if (title.isEmpty()) {
+        if (email.isEmpty()) {
+            progressDialog.dismiss();
+            Toast.makeText(getApplicationContext(), " Enter Email ", Toast.LENGTH_LONG).show();
+            return;
+//        } else if (Email != email) {
+//            progressDialog.dismiss();
+//         //   Toast.makeText(getApplicationContext(), " Wrong Email Address ", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),intent.getStringExtra(Intent.EXTRA_TEXT), Toast.LENGTH_LONG).show();
+//            return;
+        } else if (title.isEmpty()) {
             progressDialog.dismiss();
             Toast.makeText(getApplicationContext(), "Enter Title", Toast.LENGTH_LONG).show();
             return;
