@@ -40,16 +40,31 @@
                 android:id="@+id/editTextMessage"
                 android:hint="Enter Notification Message"
                 />
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextImage"
-                android:hint="Enter Image URL"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
-                />
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/Image_ID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:hint="Enter Image URL" />
+
+                <Button
+                    android:id="@+id/Brows_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Upload Image" />
+
+            </LinearLayout>
+
+            />
             <Button
                 android:id="@+id/send_message"
                 android:layout_width="match_parent"
